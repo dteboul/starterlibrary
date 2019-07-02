@@ -70,7 +70,8 @@ resource "null_resource" "install_client" {
     sudo apt-get install nagios-nrpe-server nagios-plugins
     sed -i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" /etc/nagios/nrpe.cfg
     service nagios-nrpe-server restart
-   EOF
+EOF
+    
     destination = "/tmp/installation.sh"
     }
   
