@@ -47,6 +47,40 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   tags                     = ["${module.camtags.tagslist}"]
 }
 
+resource "null_resource" "install_client" {
+  # Specify the ssh connection
+  connection {
+    user        = "root"
+    private_key = "${tls_private_key.ssh.private_key_pem}"
+    host        = "${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
+    bastion_host        = "${var.bastion_host}"
+    bastion_user        = "${var.bastion_user}"
+    bastion_private_key = "${ length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
+    bastion_port        = "${var.bastion_port}"
+    bastion_host_key    = "${var.bastion_host_key}"
+    bastion_password    = "${var.bastion_password}"
+  }
+  provisioner "file" {
+    content = <<EOF
+     #!/bin/bash
+
+    # update ubuntu
+    sudo apt-get update
+    # install NAGIOS nagios_client
+    sudo apt-get install nagios-nrpe-server nagios-plugins
+    sed -i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" /etc/nagios/nrpe.cfg
+    service nagios-nrpe-server restart
+   EOF
+    destination = "/tmp/installation.sh"
+    }
+  
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh ",
+    ]
+  }
+    
+    
 output "vm_ip" {
   value = "Public : ${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
 }
