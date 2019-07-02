@@ -28,6 +28,12 @@ variable "domain" {
   description = "VM domain"
 }
 
+variable "vm_os_password"       { type = "string"  description = "Operating System Password for the Operating System User to access virtual machine"}
+variable "vm_os_user"           { type = "string"  description = "Operating System user for the Operating System User to access virtual machine"}
+variable "boot_ipv4_address"  { type="string"      description = "Master Node IPv4 Address's"}
+variable "private_key"          { type = "string"  description = "Private SSH key Details to the Virtual machine"}
+
+ 
 # Create a new virtual guest using image "Debian"
 resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   hostname                 = "${var.hostname}"
