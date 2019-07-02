@@ -77,10 +77,10 @@ EOF
   
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh ",
+      "chmod +x /tmp/installation.sh; bash /tmp/installation.sh "
     ]
   }
-    
+}    
     
 output "vm_ip" {
   value = "Public : ${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
