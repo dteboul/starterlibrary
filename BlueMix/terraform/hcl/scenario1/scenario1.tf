@@ -28,10 +28,25 @@ variable "domain" {
   description = "VM domain"
 }
 
-variable "vm_os_password"       { type = "string"  description = "Operating System Password for the Operating System User to access virtual machine"}
-variable "vm_os_user"           { type = "string"  description = "Operating System user for the Operating System User to access virtual machine"}
-variable "boot_ipv4_address"  { type="string"      description = "Master Node IPv4 Address's"}
-variable "private_key"          { type = "string"  description = "Private SSH key Details to the Virtual machine"}
+##############################################################
+# Create public key in Devices>Manage>SSH Keys in SL console
+##############################################################
+resource "ibm_compute_ssh_key" "cam_public_key" {
+  label      = "CAM Public Key"
+  public_key = "${var.public_ssh_key}"
+}
+
+##############################################################
+# Create temp public key for ssh connection
+##############################################################
+resource "tls_private_key" "ssh" {
+  algorithm = "RSA"
+}
+
+resource "ibm_compute_ssh_key" "temp_public_key" {
+  label      = "Temp Public Key"
+  public_key = "${tls_private_key.ssh.public_key_openssh}"
+}
 
  
 # Create a new virtual guest using image "Debian"
@@ -56,10 +71,8 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
 resource "null_resource" "install_client" {
   # Specify the ssh connection
   connection {
-    type = "ssh"
-    user = "${var.vm_os_user}"
-    password =  "${var.vm_os_password}"
-    private_key = "${length(var.private_key) > 0 ? base64decode(var.private_key) : ""}"
+    user        = "root"
+    private_key = "${tls_private_key.ssh.private_key_pem}"
     host = "${var.boot_ipv4_address}"
     bastion_host        = "${var.bastion_host}"
     bastion_user        = "${var.bastion_user}"
