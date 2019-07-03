@@ -141,8 +141,9 @@ resource "null_resource" "nagios_server" {
  provisioner "file" {
     content = <<EOF
     sed -i "s@192.168.1.10@"${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}"@g" /tmp/nagios.cfg
-    destination = "/tmp/copy.sh"
+    
     EOF
+   destination = "/tmp/copy.sh"
   }
 }
 #########################################################
