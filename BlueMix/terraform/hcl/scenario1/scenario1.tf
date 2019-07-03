@@ -101,9 +101,9 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
     content = <<EOF
     #!/bin/bash
     # update ubuntu
-    sudo apt-get update
+    sudo apt-get -y --force-yes update
     # install NAGIOS nagios_client
-    sudo apt-get install nagios-nrpe-server nagios-plugins
+    sudo apt-get -y --force-yes install nagios-nrpe-server nagios-plugins
     sed -i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" /etc/nagios/nrpe.cfg
     service nagios-nrpe-server restart
     EOF
