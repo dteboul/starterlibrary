@@ -99,17 +99,14 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
   # Create the installation script
   provisioner "file" {
     content = <<EOF
-    resource "null_resource" "install_client" {
-      provisioner "file" {
-        content = << EOF
-        #!/bin/bash
-        # update ubuntu
-        sudo apt - get update
-        # install NAGIOS nagios_client
-        sudo apt - get install nagios - nrpe - server nagios - plugins
-        sed - i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" / etc / nagios / nrpe.cfg
-        service nagios - nrpe - server restart
-        EOF
+    #!/bin/bash
+    # update ubuntu
+    sudo apt - get update
+    # install NAGIOS nagios_client
+    sudo apt - get install nagios - nrpe - server nagios - plugins
+    sed - i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" / etc / nagios / nrpe.cfg
+    service nagios - nrpe - server restart
+    EOF
 
 
     destination = "/tmp/installation.sh"
@@ -122,7 +119,7 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
     ]
   }
 }
-}
+
 
 #########################################################
 # Output
