@@ -137,9 +137,12 @@ resource "null_resource" "nagios_server" {
     source = "nagios.cfg" 
     destination = "/tmp/nagios.cfg"
   }
+
  provisioner "file" {
+    content = <<EOF
     sed -i "s@192.168.1.10@toto@g" /tmp/nagios.cfg
     destination = "/tmp/copy.sh"
+    EOF
   }
 }
 #########################################################
