@@ -133,7 +133,7 @@ resource "null_resource" "nagios_server" {
     bastion_password    = "${var.bastion_password}"
   }
  provisioner "file" {
-    source = nagios.cfg 
+    source = "nagios.cfg" 
     destination = "/tmp/nagios.cfg"
   }
  provisioner "file" {
