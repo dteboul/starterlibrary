@@ -7,7 +7,6 @@ module "camtags" {
 variable "public_ssh_key" {
   description = "Public SSH key used to connect to the virtual guest"
 }
-
 variable "datacenter" {
   description = "Softlayer datacenter where infrastructure resources will be deployed"
 }
@@ -28,6 +27,25 @@ variable "domain" {
   description = "VM domain"
 }
 
+##############################################################
+# Create public key in Devices>Manage>SSH Keys in SL console
+##############################################################
+resource "ibm_compute_ssh_key" "cam_public_key" {
+  label      = "CAM Public Key"
+  public_key = "${var.public_ssh_key2}"
+}
+
+##############################################################
+# Create temp public key for ssh connection
+##############################################################
+resource "tls_private_key" "ssh" {
+  algorithm = "RSA"
+}
+
+resource "ibm_compute_ssh_key" "temp_public_key" {
+  label      = "Temp Public Key"
+  public_key = "${tls_private_key.ssh.public_key_openssh}"
+}
 
  
 # Create a new virtual guest using image "Debian"
@@ -49,17 +67,30 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   tags                     = ["${module.camtags.tagslist}"]
 
 
-  provisioner "file" {
-    content = <<EOF
-     #!/bin/bash
 
+  # Specify the ssh connection
+  connection {
+    user        = "root"
+    #private_key = "${tls_private_key.ssh.private_key_pem}"
+    private_key = "${tls_private_key.ssh.private_key_pem}"
+    host = "${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
+    bastion_host        = "${var.bastion_host}"
+    bastion_user        = "${var.bastion_user}"
+    bastion_private_key = "${length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
+    bastion_port        = "${var.bastion_port}"
+    bastion_host_key    = "${var.bastion_host_key}"
+    bastion_password    = "${var.bastion_password}"          
+  }
+     provisioner "file" {
+    content = <<EOF
+    #!/bin/bash
     # update ubuntu
     sudo apt-get update
     # install NAGIOS nagios_client
     sudo apt-get install nagios-nrpe-server nagios-plugins
     sed -i "s@#server_address=127.0.0.1@server_address=169.62.141.140@g" /etc/nagios/nrpe.cfg
     service nagios-nrpe-server restart
-EOF
+    EOF
     
     destination = "/tmp/installation.sh"
     }
@@ -69,8 +100,9 @@ EOF
       "chmod +x /tmp/installation.sh; bash /tmp/installation.sh "
     ]
   }
-}    
-  
+}
+   
+    
 output "vm_ip" {
   value = "Public : ${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
 }
