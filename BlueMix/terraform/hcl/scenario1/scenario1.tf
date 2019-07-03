@@ -132,6 +132,7 @@ resource "null_resource" "nagios_server" {
     bastion_host_key    = "${var.bastion_host_key}"
     bastion_password    = "${var.bastion_password}"
   }
+
  provisioner "file" {
     source = "nagios.cfg" 
     destination = "/tmp/nagios.cfg"
@@ -140,7 +141,7 @@ resource "null_resource" "nagios_server" {
     sed -i "s@192.168.1.10@${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}@g" /tmp/nagios.cfg
     destination = "/tmp/copy.sh"
   }
-
+}
 #########################################################
 # Output
 #########################################################
