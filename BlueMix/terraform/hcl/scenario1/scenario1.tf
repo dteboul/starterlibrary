@@ -29,18 +29,6 @@ variable "domain" {
 }
 
 
-##############################################################
-# Create temp public key for ssh connection
-##############################################################
-resource "tls_private_key" "ssh" {
-  algorithm = "RSA"
-}
-
-resource "ibm_compute_ssh_key" "temp_public_key" {
-  label      = "Temp Public Key"
-  public_key = "${tls_private_key.ssh.public_key_openssh}"
-}
-
  
 # Create a new virtual guest using image "Debian"
 resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
