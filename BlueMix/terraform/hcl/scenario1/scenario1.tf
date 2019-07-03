@@ -138,7 +138,7 @@ data "template_file" "nagios_config" {
 }
 
  provisioner "file" {
-    content     = "${data.template_file.nagios_config.rendered}"
+    source     = "${data.template_file.nagios_config}"
     destination = "/tmp/nagios.cfg"
   }
 
