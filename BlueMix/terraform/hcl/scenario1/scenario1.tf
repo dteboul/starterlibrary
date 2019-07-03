@@ -68,10 +68,6 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   tags                     = ["${module.camtags.tagslist}"]
 
 
-}  
-
-
-  resource "null_resource" "install_client" {
   provisioner "file" {
     content = <<EOF
      #!/bin/bash
