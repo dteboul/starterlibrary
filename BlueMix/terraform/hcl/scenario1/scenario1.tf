@@ -73,13 +73,7 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
     user        = "root"
     #private_key = "${tls_private_key.ssh.private_key_pem}"
     private_key = "${tls_private_key.ssh.private_key_pem}"
-    host = "${ibm_compute_vm_instance.debian_small_virtual_guest.ipv4_address}"
-    bastion_host        = "${var.bastion_host}"
-    bastion_user        = "${var.bastion_user}"
-    bastion_private_key = "${length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
-    bastion_port        = "${var.bastion_port}"
-    bastion_host_key    = "${var.bastion_host_key}"
-    bastion_password    = "${var.bastion_password}"          
+             
   }
      provisioner "file" {
     content = <<EOF
