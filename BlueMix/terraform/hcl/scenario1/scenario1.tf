@@ -135,9 +135,10 @@ resource "null_resource" "nagios_server" {
 
 data "template_file" "nagios_config" {
   template = "${file("${path.module}/nagios.cfg")}"
+}
 
  provisioner "file" {
-    source = "nagios.cfg" 
+    content     = "${data.template_file.nagios_config.rendered}"
     destination = "/tmp/nagios.cfg"
   }
 
