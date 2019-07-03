@@ -66,7 +66,7 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
   local_disk               = false
   ssh_key_ids              = ["${ibm_compute_ssh_key.orpheus_public_key.id}"]
   tags                     = ["${module.camtags.tagslist}"]
-}
+
 
 
   # Specify the ssh connection
@@ -82,6 +82,7 @@ resource "ibm_compute_vm_instance" "debian_small_virtual_guest" {
     bastion_host_key    = "${var.bastion_host_key}"
     bastion_password    = "${var.bastion_password}"          
   }
+}
   resource "null_resource" "install_client" {
   provisioner "file" {
     content = <<EOF
