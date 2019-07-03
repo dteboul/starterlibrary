@@ -138,7 +138,7 @@ resource "null_resource" "nagios_server" {
     destination = "/tmp/nagios.cfg"
   }
  provisioner "file" {
-    sed -i "s@192.168.1.10@${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}@g" /tmp/nagios.cfg
+    sed -i 's@192.168.1.10@"${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}"@g' /tmp/nagios.cfg
     destination = "/tmp/copy.sh"
   }
 }
