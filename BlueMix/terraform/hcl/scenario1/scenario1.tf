@@ -133,9 +133,9 @@ resource "null_resource" "nagios_server" {
     bastion_password    = "${var.bastion_password}"
   }
 
-data "template_file" "nagios_config" {
-  template = "${file("${path.module}/nagios.cfg")}"
-}
+#data "template_file" "nagios_config" {
+#  template = "${file("${path.module}/nagios.cfg")}"
+#}
 
  provisioner "file" {
     source     = "nagios.cfg"
