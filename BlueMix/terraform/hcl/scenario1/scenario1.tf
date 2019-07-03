@@ -122,6 +122,7 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
     ]
   }
 }
+}
 
 #########################################################
 # Output
