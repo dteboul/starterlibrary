@@ -149,7 +149,14 @@ resource "null_resource" "nagios_server" {
     EOF
    destination = "/tmp/copy.sh"
   }
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/copy.sh; bash /tmp/copy.sh"
+    ]
+  }
 }
+
+
 #########################################################
 # Output
 #########################################################
