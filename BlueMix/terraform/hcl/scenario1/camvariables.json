@@ -261,7 +261,29 @@
         "secured": false,
         "type": "string",
         "group": "virtualmachine"
-    }
+    },
+	   {
+            "name": "deploy_nagios",
+            "type": "string",
+            "description": "Indicates whether monitoring (Nagios) should be enabled or not",
+            "label": "Deploy Monitoring",
+            "secured": false,
+            "hidden": false,
+            "required": true,
+            "default": "true",
+            "immutable": false,
+            "options": [
+                {
+                    "value": "true",
+                    "label": "true",
+                    "default": "true"
+                },
+                {
+                    "value": "false",
+                    "label": "false"
+                }
+            ]
+        }
 
   ]
 }
