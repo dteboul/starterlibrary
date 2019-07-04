@@ -125,41 +125,6 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
   }
 }
 
-resource "null_resource" "nagios_server" {
-  connection {
-    user        = "root"
-    #private_key = "${tls_private_key.ssh.private_key_pem}"
-    host        = "169.62.141.140"
-    bastion_host        = "${var.bastion_host}"
-    bastion_user        = "${var.bastion_user}"
-    bastion_private_key = "${ length(var.bastion_private_key) > 0 ? base64decode(var.bastion_private_key) : var.bastion_private_key}"
-    bastion_port        = "${var.bastion_port}"
-    bastion_host_key    = "${var.bastion_host_key}"
-    bastion_password    = "${var.bastion_password}"
-  }
-
-#data "template_file" "nagios_config" {
-#  template = "${file("${path.module}/nagios.cfg")}"
-#}
-
- provisioner "file" {
-    source     = "nagios.cfg"
-    destination = "/tmp/nagios.cfg"
-  }
-
- provisioner "file" {
-    content = <<EOF
-    sed -i "s@192.168.1.10@"${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}"@g" /tmp/nagios.cfg
-    
-    EOF
-   destination = "/tmp/copy.sh"
-  }
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/copy.sh; bash /tmp/copy.sh"
-    ]
-  }
-}
 
 
 #########################################################
