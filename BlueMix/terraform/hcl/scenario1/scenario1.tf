@@ -43,6 +43,11 @@ variable "public_ssh_key" {
   description = "Public SSH key used to connect to the virtual guest"
 }
 
+  variable "deploy_nagios" {
+  type = "string"
+  description = "Indicates whether monitoring(nagios) should be enabled."
+  default = "true"
+}
 
 ##############################################################
 # Create public key in Devices>Manage>SSH Keys in SL console
