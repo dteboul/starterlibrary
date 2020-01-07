@@ -130,6 +130,6 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
 #########################################################
 # Output
 #########################################################
-output "The IP address of the VM with NodeJs installed" {
+output "IP_address_VM" {
   value = "${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}"
 }
