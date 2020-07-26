@@ -253,13 +253,13 @@
 	  {
       "name": "testsecurefield",
       "type": "string",
-      "group_name": "virtualmachine",
+      "group": "virtualmachine",
       "hidden": false,
       "description": "Test Champs secure",
       "default": "HELLOWORLD",
-      "label": "Bastion host key",
+      "label": "Test secure field",
       "secured": true,
-      "required": false
+      "required": true
     },
     {
         "default": "sample.com",
