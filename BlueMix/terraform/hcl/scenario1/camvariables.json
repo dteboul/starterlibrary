@@ -240,13 +240,13 @@
     },
     {
         "default": "debian-small",
-        "description": "Hostname of the virtual instance (small flavor) to be deployed",
+        "description": "Secure Hostname of the virtual instance (small flavor) to be deployed",
         "hidden": false,
         "immutable": false,
         "label": "Hostname",
         "name": "hostname",
         "required": true,
-        "secured": false,
+        "secured": true,
         "type": "string",
         "group": "virtualmachine"
     },
