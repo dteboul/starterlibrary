@@ -34,6 +34,10 @@ module "camtags" {
 variable "datacenter" {
   description = "Softlayer datacenter where infrastructure resources will be deployed"
 }
+  
+  variable "testsecurefield" {
+  description = "testsecurefield"
+}
 
 variable "hostname" {
   description = "Hostname of the virtual instance to be deployed"
