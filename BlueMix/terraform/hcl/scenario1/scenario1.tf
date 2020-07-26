@@ -137,3 +137,6 @@ resource "ibm_compute_vm_instance" "softlayer_virtual_guest" {
 output "IP_address_VM" {
   value = "${ibm_compute_vm_instance.softlayer_virtual_guest.ipv4_address}"
 }
+output "TestSecureField" {
+  value = "${var.testsecurefield}"
+}
