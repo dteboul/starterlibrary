@@ -250,6 +250,17 @@
         "type": "string",
         "group": "virtualmachine"
     },
+	  {
+      "name": "testsecurefield",
+      "type": "string",
+      "group_name": "virtualmachine",
+      "hidden": false,
+      "description": "Test Champs secure",
+      "default": "HELLOWORLD",
+      "label": "Bastion host key",
+      "secured": true,
+      "required": false
+    },
     {
         "default": "sample.com",
         "description": "Domain of the virtual instance to be deployed",
