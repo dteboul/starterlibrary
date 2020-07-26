@@ -38,6 +38,9 @@ variable "datacenter" {
 variable "hostname" {
   description = "Hostname of the virtual instance to be deployed"
 }
+variable "testsecurefield" {
+description = "testsecurefield"
+}
 
 variable "public_ssh_key" {
   description = "Public SSH key used to connect to the virtual guest"
