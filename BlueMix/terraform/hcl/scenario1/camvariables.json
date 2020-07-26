@@ -297,4 +297,16 @@
         }
 
   ]
+	"template_output_params": [
+    {
+      "name": "testsecurefield",
+      "label": "testsecurefield",
+      "description": "testsecurefield",
+      "type": "string",
+      "hidden": false,
+      "secured": true,
+      "group_name": "content_template_output"
+    }
+  ]
+	
 }
