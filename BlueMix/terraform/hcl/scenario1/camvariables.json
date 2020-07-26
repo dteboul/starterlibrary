@@ -304,7 +304,7 @@
       "description": "testsecurefield",
       "type": "string",
       "hidden": false,
-      "secured": true,
+      "secured": false,
       "group_name": "content_template_output"
     }
   ]
