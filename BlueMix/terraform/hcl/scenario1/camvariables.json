@@ -306,7 +306,17 @@
       "hidden": false,
       "secured": true,
       "group_name": "content_template_output"
+    },
+    {
+      "name": "vm_ip",
+      "label": "vm_ip",
+      "description": "",
+      "secured": false,
+      "hidden": false
     }
+
+		
+		
   ]
 	
 }
