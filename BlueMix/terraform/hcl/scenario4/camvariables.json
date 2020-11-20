@@ -1,0 +1,230 @@
+{
+  "input_datatypes": [ ],
+  "input_namespaces": [ ],
+  "output_namespace": "",
+  "input_groups": [
+    {
+      "name": "Globals",
+      "label": "Globals"
+    },
+    {
+      "name": "Instances",
+      "label": "Instances"
+    },
+    {
+      "name": "Instances-ibm_compute_vm_instance.dbserver",
+      "label": "Instances - ibm_compute_vm_instance.dbserver"
+    },
+    {
+      "name": "Instances-ibm_compute_vm_instance.webserver",
+      "label": "Instances - ibm_compute_vm_instance.webserver"
+    },
+    {
+      "name": "Other",
+      "label": "Other"
+    }
+  ],
+  "output_groups": [ ],
+  "template_input_params": [
+    {
+      "name": "vm_webserver_domain",
+      "label": "Vm Webserver Domain",
+      "description": "The domain for the computing instance.",
+      "type": "string",
+      "default": "ibm.com",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_webserver_hostname",
+      "label": "Vm Webserver Hostname",
+      "description": "The hostname for the computing instance.",
+      "type": "string",
+      "default": "webhost",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_webserver_datacenter",
+      "label": "Vm Webserver Datacenter",
+      "description": "The datacenter in which you want to provision the instance. NOTE: If dedicated_host_name or dedicated_host_id is provided then the datacenter should be same as the dedicated host datacenter.",
+      "type": "string",
+      "default": "par01",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "ibm_ssh_key_name",
+      "label": "Ibm Ssh Key Name",
+      "description": "Generated",
+      "type": "string",
+      "default": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDWVcdGD+xpfEiWYjSXRd1k77kFewP0JwNQLVDyTUefrWTVmFGlBN4ycc1M16TB2I+7V+ZxWZDdY8M11/WEiegTvCEs6XVziG9Aa6cUsrALAWuxBdOcK4Hvpb0W09AaLep8k2DAuRiVswxUi8CcEbenvMu4GzJqs7t77Zm1KN65hKyw4PYAMg9aKt2VmrM7LoYZCr8759y8GIaiwE3UZDb3YAc9nfxc+el+2Nga9o+mwyD1VmjTuSRYs37ndBRsry5au6cuP2T1JYZWfRh9Fpnj3bVbeGrmjLuoSTruzqJKTr/dUBklEZvsLPkpqN5cXLt2LDmws7p+uaNRrgok8nGt",
+      "regex": "",
+      "group_name": "Other",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_webserver_os_reference_code",
+      "label": "Vm Webserver Os Reference Code",
+      "description": "Generated",
+      "type": "string",
+      "default": "CENTOS_7_64",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "testsecurefield",
+      "label": "Testsecurefield",
+      "description": "testsecurefield",
+      "type": "string",
+      "default": "123456789",
+      "regex": "",
+      "group_name": "Other",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "ibm_network_public_vlan_id",
+      "label": "Ibm Network Public Vlan Id",
+      "description": "Generated",
+      "type": "string",
+      "default": "2894292",
+      "regex": "",
+      "group_name": "Instances",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "ibm_network_private_vlan_id",
+      "label": "Ibm Network Private Vlan Id",
+      "description": "Generated",
+      "type": "string",
+      "default": "2894294",
+      "regex": "",
+      "group_name": "Instances",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_dbserver_domain",
+      "label": "Vm Dbserver Domain",
+      "description": "The domain for the computing instance.",
+      "type": "string",
+      "default": "ibm.com",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_dbserver_hostname",
+      "label": "Vm Dbserver Hostname",
+      "description": "The hostname for the computing instance.",
+      "type": "string",
+      "default": "dbhost",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_dbserver_datacenter",
+      "label": "Vm Dbserver Datacenter",
+      "description": "The datacenter in which you want to provision the instance. NOTE: If dedicated_host_name or dedicated_host_id is provided then the datacenter should be same as the dedicated host datacenter.",
+      "type": "string",
+      "default": "par01",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    },
+    {
+      "name": "vm_dbserver_os_reference_code",
+      "label": "Vm Dbserver Os Reference Code",
+      "description": "Generated",
+      "type": "string",
+      "default": "CENTOS_7_64",
+      "regex": "",
+      "group_name": "",
+      "required": true,
+      "secured": false,
+      "hidden": false,
+      "immutable": false,
+      "immutable_after_create": false
+    }
+  ],
+  "template_output_params": [
+    {
+      "name": "IP_address_webserver",
+      "label": "Ip Address Webserver",
+      "description": "null",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    },
+    {
+      "name": "IP_address_dbserver",
+      "label": "Ip Address Dbserver",
+      "description": "null",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    },
+    {
+      "name": "TestSecureField",
+      "label": "Test Secure Field",
+      "description": "null",
+      "group_name": "",
+      "secured": false,
+      "hidden": false,
+      "shortname": "",
+      "type": "string"
+    }
+  ]
+}
